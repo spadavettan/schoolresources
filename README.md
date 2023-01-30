@@ -14,6 +14,7 @@
 - Clicking an element will take you to that elements subcategory (clicking classes takes you to professors page for that class)
 
 ## TODO:
+- Separate list handling and tabs into their own components *DO IMMEDIATELY*
 - Fix tabs for classes and professors not re-rendering page (potentially solved by breaking up 2d state array) - university is working
 - Add adding resources with a hidden form that is smooth and easily accessible
 - Add upvote/downvote for resources and comment section 
