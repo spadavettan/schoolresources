@@ -1,4 +1,4 @@
-# schoolresources
+# schoolresources (need a more creative name - maybe haven?)
 
 ## React SPA that allows users to upload resources (textbooks, youtube videos, images, documents, etc.) for a specific class at a specific university. (In Progress)
 
