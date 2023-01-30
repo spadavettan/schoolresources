@@ -1,6 +1,6 @@
 # schoolresources (need a more creative name - maybe haven?)
 
-## React SPA that allows users to upload resources (textbooks, youtube videos, images, documents, etc.) for a specific class at a specific university. (In Progress)
+## React, Nodejs, Postgres, Express SPA that allows users to upload resources (textbooks, youtube videos, images, documents, etc.) for a specific class at a specific university. (In Progress)
 
 ###### The goal of this application is to reduce the amount of random googling people have to do when searching for help on a certain project/assignment.
 ###### Searching normally can be vague and ambiguous, but using a centralized list curated by students who have taken the exact same class from the
