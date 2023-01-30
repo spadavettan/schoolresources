@@ -11,12 +11,12 @@
 - Rendering of table data
 - Delete functionality for all elements
 - Addition of elements except for resources
-- clicking an element will take you to that elements subcategory (clicking classes takes you to professors page for that class)
+- Clicking an element will take you to that elements subcategory (clicking classes takes you to professors page for that class)
 
 ## TODO:
-- fix tabs for classes and professors not re-rendering page (potentially solved by breaking up 2d state array) - university is working
+- Fix tabs for classes and professors not re-rendering page (potentially solved by breaking up 2d state array) - university is working
 - Add adding resources with a hidden form that is smooth and easily accessible
 - Add upvote/downvote for resources and comment section 
 - Add edit resources
 - Add auth exclusive to university students
-
+- Server side form validation
