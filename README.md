@@ -6,7 +6,7 @@
 ###### Searching normally can be vague and ambiguous, but using a centralized list curated by students who have taken the exact same class from the
 ###### same professor could be very useful in reducing friction when learning a new concept or studying for an exam.
 
-##What's working
+## What's working
 - Server backend calls are working and tested by Postman TODO: find automated testing solution
 - Rendering of table data
 - Delete functionality for all elements
