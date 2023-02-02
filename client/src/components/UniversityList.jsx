@@ -215,6 +215,55 @@ const UniversityList = (props) => {
             </div>
     )
     }
+    const headHandler = () => {
+        if (type == "classes"){
+            return cHead()
+        }
+        else if (type == "universities"){
+            return uHead()
+        }
+        else if (type == "professors"){
+            return pHead()
+        }
+        else if (type == "resources"){
+            return rHead()
+        }
+    }
+    const uHead = () => {
+        return (
+            <tr className="bg-primary">
+                <th scope="col">University</th>
+                <th scope = "col">Delete</th>
+            </tr>
+        )
+    }
+    const cHead = () => {
+        return (
+            <tr className="bg-primary">
+                <th scope="col">Class</th>
+                <th scope = "col">Delete</th>
+            </tr>
+        )
+    }
+    const pHead = () => {
+        return (
+            <tr className="bg-primary">
+                <th scope="col">Professor</th>
+                <th scope = "col">Delete</th>
+            </tr>
+        )
+    }
+    const rHead = () => {
+        return (
+            <tr className="bg-primary">
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Link</th>
+                <th scope="col">Description</th>
+                <th scope = "col">Delete</th>
+            </tr>
+        )
+    }
   return (
     <div className="list-group">
         <div class="pathrow">
@@ -222,12 +271,7 @@ const UniversityList = (props) => {
         </div>
         <table className="table table-hover">
             <thead>
-                <tr className="bg-primary">
-                    <th scope="col">
-                        Universities
-                    </th>
-                    <th scope = "col">Delete</th>
-                </tr>
+                {headHandler()}
             </thead>
             <tbody>
                 {listHandler()/*universities.map(university=> {
