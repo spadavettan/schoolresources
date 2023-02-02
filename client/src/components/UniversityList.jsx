@@ -62,20 +62,9 @@ const UniversityList = (props) => {
 
             //set the list data
             setUniversities(response.data.data);
-            if (path.length == 0) {
-                console.log("appending class to path")
-                let tempPath = []
-                tempPath.push([id, name])
-                console.log("this is temp path")
-                console.log(tempPath)
-                setPath(path, tempPath)
-                console.log("this is the path")
-                console.log(path)
-            }
-            else{
-                let tempPath = [path[0]]
-                setPath(tempPath)                
-            }
+            let newPath = {}
+            newPath = {"uid" : id}
+            setPath(newPath)
             //set the type
             setType("classes")
         } catch (error) {
@@ -91,20 +80,9 @@ const UniversityList = (props) => {
             const response = await UniversityFinder.get(`/${uid}/classes/${cid}/professors`)
             console.log(response.data.data)
             console.log("save professor path state")
-            if (path.length==2){
-                let tempPair = [cid, prefix.concat(suffix)]
-                let tempPath = [...path]
-                console.log(tempPath)
-                tempPath.push(tempPair)
-                setPath(tempPath)
-                console.log("this is the path")
-                console.log(path)
-            }
-            else{
-                let tempPath = [path[0],path[1]]
-                console.log(tempPath)
-                setPath(tempPath)
-            }
+            let newPath = {}
+            newPath = {"uid": uid, "cid": cid}
+            setPath(newPath)
             setUniversities(response.data.data)
             setType("professors")
         }
@@ -116,12 +94,9 @@ const UniversityList = (props) => {
             const response = await UniversityFinder.get(`/${uid}/classes/${cid}/professors/${pid}/resources`)
             console.log("save resource path state")
             //length 3 indicates coming from professor 
-            if(path.length==3){
-                let tempPair = [pid, name]
-                let tempPath = [...path]
-                tempPath.push(tempPair)
-                setPath(tempPath)
-            }
+            let newPath = {}
+            newPath = {"uid": uid, "cid": cid, "pid": pid}
+            setPath(newPath)
             setUniversities(response.data.data)
             console.log(response.data.data)
             setType("resources")
@@ -225,7 +200,7 @@ const UniversityList = (props) => {
         return(
             <div class="pathrow">
             <div class = "upath" onClick = {()=>handleUniversitySelect()}> Universities </div>
-            <div class= "cpath" onClick = {()=>handleClassSelect()}> Classes </div>
+            <div class= "cpath" onClick = {()=>handleClassSelect(path["uid"])}> Classes </div>
             <div class = "ppath"> Professors </div>
             </div>
         )
@@ -234,8 +209,8 @@ const UniversityList = (props) => {
         return(
             <div class="pathrow">
                 <div class = "upath" onClick = {()=>handleUniversitySelect()}> Universities </div>
-                <div class= "cpath" onClick = {()=>handleClassSelect()}> Classes </div>
-                <div class = "ppath" onClick = {()=>handleProfessorSelect()}> Professors </div>
+                <div class= "cpath" onClick = {()=>handleClassSelect(path["uid"])}> Classes </div>
+                <div class = "ppath" onClick = {()=>handleProfessorSelect(path["uid"], path["cid"])}> Professors </div>
                 <div class = "rpath"> Resources </div>
             </div>
     )
