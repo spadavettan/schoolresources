@@ -6,6 +6,7 @@ const UniversityList = (props) => {
     const{universities, setUniversities} = useContext(UniversitiesContext)
     const{type, setType} = useContext(UniversitiesContext)
     const{path, setPath} = useContext(UniversitiesContext)
+    const{open, setOpen} = useContext(UniversitiesContext)
     let history = useHistory()
     //empty array second parameter means only happen on mount
     useEffect(() => {
@@ -18,6 +19,14 @@ const UniversityList = (props) => {
     fetchData();
     }, []);
 
+
+    const handleOpen = () => {
+        setOpen(true)
+    }
+    const handleClose = () => {
+        setOpen(false)
+    }
+    
     //works for all because we use id
     const handleDelete = async(id) =>{
         try {
@@ -105,6 +114,7 @@ const UniversityList = (props) => {
     }
     
     const renderUniversities = () => {
+        console.log(universities)
         return universities.map(university=> {
             return(
                 <tr onClick = {()=>handleClassSelect(university.id, university.name)} key = {university.id}>
@@ -264,6 +274,9 @@ const UniversityList = (props) => {
             </tr>
         )
     }
+
+
+
   return (
     <div className="list-group">
         <div class="pathrow">

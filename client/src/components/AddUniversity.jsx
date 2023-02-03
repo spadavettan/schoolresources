@@ -3,14 +3,14 @@ import UniversityFinder from '../apis/UniversityFinder';
 import { UniversitiesContext } from '../context/UniversitiesContext';
 const AddUniversity = () => {
     const [name, setName] = useState("");
-    const {addUniversity} = useContext(UniversitiesContext);
+    const {addUniversities} = useContext(UniversitiesContext);
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         try{
             const response = await UniversityFinder.post("/", {
                 name
             });
-            addUniversity(response.data.data.university);
+            addUniversities(response.data.data);
             console.log(response);
         }
         catch(err){}
