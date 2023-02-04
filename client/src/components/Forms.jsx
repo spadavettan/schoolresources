@@ -75,7 +75,7 @@ const ShowForm = () => {
                     <div className="from-row">
                         <div className="col">
                             <input value = {name} onChange={e=>setName(e.target.value)} type = "text" className="form-control" placeholder="Name your resource"/>
-                            <select onChange={(e)=>setAType(e.target.value)}name="aType">
+                            <select onChange={(e)=>setAType(e.target.value)} name="aType">
                                 <option value="assignment">Assignment</option>
                                 <option value="assessment">Assessment</option>
                             </select>
@@ -125,12 +125,14 @@ const ShowForm = () => {
                 console.log(universities);
             }
             else if (type == "resources"){
+            console.log(aType)
             const response = await UniversityFinder.post(`/${path["uid"]}/classes/${path["cid"]}/professors/${path["pid"]}/resources`, {
                     link,
                     name,
                     description,
-                    aType
+                    "type": aType
                 });
+            console.log(response)
             setOpen(false);
             console.log("adding university");
             console.log(universities);
