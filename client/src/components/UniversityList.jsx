@@ -28,24 +28,39 @@ const UniversityList = (props) => {
     }
     
     //works for all because we use id
-    const handleDelete = async(id) =>{
+    const handleDelete = async(e, id) =>{
         try {
             //handling delete!
             if (type==="universities"){
                 const response = await UniversityFinder.delete(`/${id}`);
+                setUniversities(universities.filter(university => {
+                    return university.id !== id;
+                }))
             }
             else if(type==="classes"){
-                const response = await UniversityFinder.delete(`/${universities[0].university_id}/${id}`);
+                const response = await UniversityFinder.delete(`/${path["uid"]}/classes/${id}`);
+                setUniversities(universities.filter(university => {
+                    return university.id !== id;
+                }))
             }
             else if(type==="professors"){
-                const response = await UniversityFinder.delete(`/${universities[0].university_id}/classes/${universities[0].class_id}/professors/${id}}`);
+                const response = await UniversityFinder.delete(`/${path["uid"]}/classes/${path["cid"]}/professors/${id}`);
+                setUniversities(universities.filter(university => {
+                    return university.id !== id;
+                }))
             }
             else if(type==="resources"){
-                const response = await UniversityFinder.delete(`/${universities[0].university_id}/classes/${universities[0].class_id}/professors/${universities[0].professor_id}/${id}}`);
+                const response = await UniversityFinder.delete(`/${path["uid"]}/classes/${path["cid"]}/professors/${path["pid"]}/resources/${id}`);
+                setUniversities(universities.filter(university => {
+                    return university.id !== id;
+                }))
             }
-            setUniversities(universities.filter(university => {
+            /*setUniversities(universities.filter(university => {
                 return university.id !== id;
-            }))
+            }))*/
+            console.log("deleted unis")
+            console.log(universities)
+            //e.stopImmediatePropagation();
             //console.log(response)
         } catch (error) {
             
@@ -119,7 +134,7 @@ const UniversityList = (props) => {
             return(
                 <tr onClick = {()=>handleClassSelect(university.id, university.name)} key = {university.id}>
                     <td>{university.name}</td>
-                    <td><button onClick = {()=>handleDelete(university.id)} className="btn-warning"> Delete </button></td>
+                    <td><button onClick = {(e)=>{e.stopPropagation();handleDelete(e,university.id)}} className="btn-warning"> Delete </button></td>
                 </tr>
             )
         })
@@ -130,7 +145,7 @@ const UniversityList = (props) => {
             return(
                 <tr onClick = {()=>handleProfessorSelect(university.university_id, university.id, university.prefix, university.suffix)} key = {university.id}>
                     <td>{university.prefix.concat(university.suffix)}</td>
-                    <td><button onClick = {()=>handleDelete(university.id)} className="btn-warning"> Delete </button></td>
+                    <td><button onClick = {(e)=>{e.stopPropagation();handleDelete(e,university.id)}} className="btn-warning"> Delete </button></td>
                 </tr>
             )
         })
@@ -141,7 +156,7 @@ const UniversityList = (props) => {
             return(
                 <tr onClick = {()=>handleResourcesSelect(university.university_id, university.class_id, university.id, university.name)} key = {university.id}>
                     <td>{university.name}</td>
-                    <td><button onClick = {()=>handleDelete(university.id)} className="btn-warning"> Delete </button></td>
+                    <td><button onClick = {(e)=>{e.stopPropagation();handleDelete(e,university.id)}} className="btn-warning"> Delete </button></td>
                 </tr>
             )
         })
@@ -155,7 +170,7 @@ const UniversityList = (props) => {
                     <td>{university.type}</td>
                     <td>{university.link} </td>
                     <td>{university.description}</td>
-                    <td><button onClick = {()=>handleDelete(university.id)} className="btn-warning"> Delete </button></td>
+                    <td><button onClick = {(e)=>{e.stopPropagation();handleDelete(e,university.id)}} className="btn-warning"> Delete </button></td>
                 </tr>
             )
         })
